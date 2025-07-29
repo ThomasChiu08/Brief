@@ -8,30 +8,96 @@
   <link rel="icon" type="image/x-icon" href="icons/Renote.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Slide up & fade in */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0;
+      animation: slideUp 0.8s ease-out forwards;
+    }
+    /* Zoom on hover for images */
+    .hover-zoom {
+      transition: transform 0.3s ease;
+    }
+    .hover-zoom:hover {
+      transform: scale(1.05);
+    }
+  </style>
+  <style>
+    .fade-in {
+      animation: fadeInUp 1s ease-out both;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes backgroundShift {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 0%; }
+    }
+    .bg-animated {
+      background-size: 200% 200%;
+      animation: backgroundShift 15s ease infinite;
+    }
+  </style>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: radial-gradient(circle at top left, #2a2a3a, #1a1a2a), url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+        background-blend-mode: overlay;
+      }
+      .card {
+        background: rgba(20, 20, 30, 0.7) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+      }
+      h1, h2, p, li {
+        color: #e5e7eb !important;
+      }
+      a {
+        color: #90cdf4 !important;
+      }
+      /* Override Toggle button colors */
+      #theme-toggle {
+        background: rgba(30, 30, 40, 0.7) !important;
+        color: #f3f4f6 !important;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-blue-100 via-white to-purple-100 font-['Noto_Sans_TC'] text-gray-800 scroll-smooth">
-  <div class="min-h-screen flex items-center justify-center py-12 px-4">
-    <div class="backdrop-blur-md bg-white/50 p-6 sm:p-8 rounded-xl shadow-2xl max-w-2xl w-full border border-white/30">
+<body class="bg-gradient-to-br from-gray-100 via-gray-200 to-purple-100 bg-[url('https://www.transparenttextures.com/patterns/light-honeycomb.png')] bg-cover bg-fixed font-['Noto_Sans_TC'] text-gray-800 scroll-smooth min-h-screen px-4 py-10 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 dark:bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] dark:text-white relative bg-animated">
+  <div class="flex justify-center items-center w-full h-full">
+    <div class="fade-in backdrop-blur-md bg-white/50 p-6 sm:p-8 rounded-xl shadow-2xl max-w-2xl w-full border border-white/30">
       
       <!-- 頭像與名稱 -->
       <div class="flex justify-center">
-        <img src="images/Avatar.JPG" alt="Thomas的頭像" class="w-40 h-40 rounded-full object-cover mb-6 border-4 border-white shadow-md" loading="lazy">
+        <img src="images/Avatar.JPG" alt="Thomas的頭像" class="w-40 h-40 rounded-full object-cover mb-6 border-4 border-white shadow-md hover-zoom" loading="lazy">
       </div>
-      <h1 class="text-4xl font-bold text-center text-gray-900 mb-3">Thomas</h1>
-      <p class="text-center text-gray-700 text-lg mb-6">Photographer | Filmmaker</p>
+      <h1 class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-3">Thomas</h1>
+      <p class="text-center text-gray-700 dark:text-white text-lg mb-6">Photographer | Filmmaker</p>
 
       <!-- 關於我 -->
-      <div class="backdrop-blur-sm bg-white/30 rounded-lg p-4 border border-white/20 mb-8 shadow">
-        <h2 class="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2">關於我</h2>
-        <p class="text-gray-700 mt-4 leading-relaxed">
-          我專注於捕捉令人驚嘆的視覺故事與畫面。憑藉多年的經驗，我與多家知名廠商合作，包括 Tilta、PGYTECH、Neewer、Desview、Portkeys 和 Vivo，參與多個專業攝影與電影製作項目。我擅長運用光線、構圖和後期製作，打造高品質的視覺內容，無論是靜態攝影還是動態影片，都致力於呈現獨特的藝術視角。
+      <div class="card backdrop-blur-xl bg-white/10 rounded-lg p-4 border border-white/5 mb-8 shadow dark:bg-gray-900/40">
+        <h2 class="fade-in text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 dark:text-white dark:border-gray-600">關於我</h2>
+        <p class="text-gray-700 dark:text-white mt-4 leading-relaxed">
+          我專注於捕捉令人驚嘆的視覺故事與畫面。憑藉多年的經驗，我與多家知名廠商合作，包括 Canon、Vivo、Tilta、PGYTECH、Portkeys、Desview 和 Neewer，參與多個專業攝影與電影製作項目。我擅長運用光線、構圖和後期製作，打造高品質的視覺內容，無論是靜態攝影還是動態影片，都致力於呈現獨特的藝術視角。
         </p>
       </div>
 
       <!-- 技能 -->
-      <div class="backdrop-blur-sm bg-white/30 rounded-lg p-4 border border-white/20 mb-8 shadow">
-        <h2 class="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2">技能</h2>
-        <ul class="list-disc list-inside text-gray-700 mt-4 space-y-2">
+      <div class="card backdrop-blur-xl bg-white/10 rounded-lg p-4 border border-white/5 mb-8 shadow dark:bg-gray-900/40" style="animation-delay:0.2s">
+        <h2 class="fade-in text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 dark:text-white dark:border-gray-600">技能</h2>
+        <ul class="list-disc list-inside text-gray-700 dark:text-white mt-4 space-y-2">
           <li>後期剪輯與調色（Adobe Premiere Pro, DaVinci Resolve）</li>
           <li>穩定器與滑軌操作（Gimbal, Slider）</li>
           <li>燈光設置與使用（LED, Softbox）</li>
@@ -43,28 +109,28 @@
       </div>
 
       <!-- 聯繫方式 -->
-      <div class="backdrop-blur-sm bg-white/30 rounded-lg p-4 border border-white/20 mb-8 shadow">
-        <h2 class="text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2">聯繫方式</h2>
+      <div class="card backdrop-blur-xl bg-white/10 rounded-lg p-4 border border-white/5 mb-8 shadow dark:bg-gray-900/40" style="animation-delay:0.4s">
+        <h2 class="fade-in text-2xl font-semibold text-gray-800 border-b-2 border-gray-200 pb-2 dark:text-white dark:border-gray-600">聯繫方式</h2>
         <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <a href="mailto:Thomas.cinematic08@gmail.com" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 p-2 rounded-lg hover:bg-white/70 transition hover:scale-105">
+          <a href="mailto:Thomas.cinematic08@gmail.com" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 dark:bg-gray-800/60 hover:bg-white/70 dark:hover:bg-gray-700/70 p-2 rounded-lg transition hover:scale-105">
             <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
             </svg>
             Thomas.cinematic08@gmail.com
           </a>
-          <a href="https://www.youtube.com/@Thomas_Chiu08" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 p-2 rounded-lg hover:bg-white/70 transition hover:scale-105">
+          <a href="https://www.youtube.com/@Thomas_Chiu08" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 dark:bg-gray-800/60 hover:bg-white/70 dark:hover:bg-gray-700/70 p-2 rounded-lg transition hover:scale-105">
             <img src="images/Youtube.jpg" alt="YouTube Icon" class="w-6 h-6 mr-3" loading="lazy">
             YouTube: Thomas_Chiu08
           </a>
-          <a href="https://www.instagram.com/thomas_cinematic08/" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 p-2 rounded-lg hover:bg-white/70 transition hover:scale-105">
+          <a href="https://www.instagram.com/thomas_cinematic08/" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 dark:bg-gray-800/60 hover:bg-white/70 dark:hover:bg-gray-700/70 p-2 rounded-lg transition hover:scale-105">
             <img src="images/instagram.png" alt="Instagram Icon" class="w-6 h-6 mr-3" loading="lazy">
             Instagram: thomas_cinematic08
           </a>
-          <a href="https://v.douyin.com/D3NmCxFD3hs/" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 p-2 rounded-lg hover:bg-white/70 transition hover:scale-105">
+          <a href="https://v.douyin.com/D3NmCxFD3hs/" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 dark:bg-gray-800/60 hover:bg-white/70 dark:hover:bg-gray-700/70 p-2 rounded-lg transition hover:scale-105">
             <img src="images/Douyin.jpg" alt="抖音 Icon" class="w-6 h-6 mr-3" loading="lazy">
             抖音: Thomas
           </a>
-          <a href="https://www.xiaohongshu.com/user/profile/653242de000000002a037706" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 p-2 rounded-lg hover:bg-white/70 transition hover:scale-105">
+          <a href="https://www.xiaohongshu.com/user/profile/653242de000000002a037706" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 bg-gray-50/60 dark:bg-gray-800/60 hover:bg-white/70 dark:hover:bg-gray-700/70 p-2 rounded-lg transition hover:scale-105">
             <img src="images/Rednote.jpg" alt="小紅書 Icon" class="w-6 h-6 mr-3" loading="lazy">
             小紅書: Thomas
           </a>
@@ -73,7 +139,7 @@
 
       <!-- 作品按鈕 -->
       <div class="mt-8 text-center">
-        <a href="#projects" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition hover:scale-105">
+        <a href="#projects" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition hover:scale-105 dark:bg-blue-600 dark:hover:bg-blue-500">
           查看我的作品
         </a>
       </div>
@@ -81,9 +147,24 @@
   </div>
 
   <!-- 預留作品區塊 -->
-  <div id="projects" class="max-w-5xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">我的作品集 Coming Soon</h2>
-    <p class="text-center text-gray-600">敬請期待，我正在為你準備更多精彩內容！</p>
+  <div id="projects" class="card max-w-5xl mx-auto px-4 py-16 text-center fade-in dark:bg-gray-900/40">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white dark:border-gray-600">我的作品集 Coming Soon</h2>
+    <p class="text-center text-gray-600 dark:text-white">敬請期待，我正在為你準備更多精彩內容！</p>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
