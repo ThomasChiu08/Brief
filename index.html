@@ -75,7 +75,7 @@
     }
   </style>
   <style>
-    /* 星空画布 */
+    /* 星空画布：仅在深色模式显示 */
     #starfield {
       position: fixed;
       top: 0;
@@ -85,6 +85,12 @@
       z-index: -2;
       pointer-events: none;
       background: transparent;
+      display: none;
+    }
+    @media (prefers-color-scheme: dark) {
+      #starfield {
+        display: block;
+      }
     }
   </style>
 </head>
