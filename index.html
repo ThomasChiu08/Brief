@@ -74,10 +74,25 @@
       }
     }
   </style>
+  <style>
+    /* 星空画布 */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      background: transparent;
+    }
+  </style>
 </head>
 <body class="bg-gradient-to-br from-gray-100 via-gray-200 to-purple-100 bg-[url('https://www.transparenttextures.com/patterns/light-honeycomb.png')] bg-cover bg-fixed font-['Noto_Sans_TC'] text-gray-800 scroll-smooth min-h-screen px-4 py-10 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 dark:bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] dark:text-white relative bg-animated">
+  <!-- 星空与流星背景 -->
+  <canvas id="starfield"></canvas>
   <div class="flex justify-center items-center w-full h-full">
-    <div class="fade-in backdrop-blur-md bg-white/50 p-6 sm:p-8 rounded-xl shadow-2xl max-w-2xl w-full border border-white/30">
+    <div class="fade-in backdrop-blur-md bg-gray-800/60 p-6 sm:p-8 rounded-xl shadow-2xl max-w-2xl w-full border border-gray-700/40">
       
       <!-- 頭像與名稱 -->
       <div class="flex justify-center">
@@ -137,6 +152,20 @@
         </div>
       </div>
 
+      <!-- YouTube 影片嵌入 -->
+      <div class="fade-in mt-8">
+        <h2 class="text-2xl font-semibold text-center mb-4">我的 YouTube 影片</h2>
+        <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg">
+          <iframe class="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/rFAWbVeKRH0"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
       <!-- 作品按鈕 -->
       <div class="mt-8 text-center">
         <a href="#projects" class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition hover:scale-105 dark:bg-blue-600 dark:hover:bg-blue-500">
@@ -165,6 +194,65 @@
         observer.observe(el);
       });
     });
+  </script>
+  <script>
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    // 初始化星星
+    const stars = Array.from({ length: 200 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2 + 0.2,
+      alpha: Math.random()
+    }));
+    const meteors = [];
+    // 每隔固定时间生成一颗流星（2.5 秒间隔）
+    setInterval(() => {
+      meteors.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height * 0.5,
+        vx: 5 + Math.random() * 5,
+        vy: 2 + Math.random() * 2,
+        len: 30 + Math.random() * 30,
+        alpha: 1
+      });
+    }, 2500);
+    // 绘制循环
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // 绘制星星
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+        ctx.fill();
+        // 微光闪烁
+        s.alpha += (Math.random() - 0.5) * 0.02;
+        if (s.alpha < 0) s.alpha = 0;
+        if (s.alpha > 1) s.alpha = 1;
+      });
+      // 绘制流星
+      meteors.forEach((m, i) => {
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(m.x + m.len, m.y + m.len * 0.3);
+        ctx.strokeStyle = `rgba(255,255,255,${m.alpha})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        m.x += m.vx;
+        m.y += m.vy;
+        m.alpha -= 0.01;
+        if (m.alpha <= 0) meteors.splice(i, 1);
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
   </script>
 </body>
 </html>
