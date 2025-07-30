@@ -27,6 +27,12 @@
     }
   </style>
   <style>
+    /* Prevent horizontal overflow on mobile */
+    html, body {
+      overflow-x: hidden;
+    }
+  </style>
+  <style>
     .fade-in {
       animation: fadeInUp 1s ease-out both;
     }
@@ -49,6 +55,7 @@
       background-size: 200% 200%;
       animation: backgroundShift 15s ease infinite;
     }
+  </style>
   </style>
   <style>
     @media (prefers-color-scheme: dark) {
@@ -97,8 +104,8 @@
 <body class="bg-gradient-to-br from-gray-100 via-gray-200 to-purple-100 bg-[url('https://www.transparenttextures.com/patterns/light-honeycomb.png')] bg-cover bg-fixed font-['Noto_Sans_TC'] text-gray-800 scroll-smooth min-h-screen px-4 py-10 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-indigo-900 dark:bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] dark:text-white relative bg-animated">
   <!-- 星空与流星背景 -->
   <canvas id="starfield"></canvas>
-  <div class="flex justify-center items-center w-full h-full">
-    <div class="fade-in backdrop-blur-md bg-white/50 dark:bg-gray-800/60 p-6 sm:p-8 rounded-xl shadow-2xl max-w-2xl w-full border border-gray-200/30 dark:border-gray-700/40">
+  <div class="flex justify-center items-start w-full" style="padding-bottom: env(safe-area-inset-bottom);">
+    <div class="fade-in backdrop-blur-md bg-white/50 dark:bg-gray-800/60 p-4 sm:p-6 rounded-xl shadow-2xl max-w-full sm:max-w-2xl w-full border border-gray-200/30 dark:border-gray-700/40">
       
       <!-- 頭像與名稱 -->
       <div class="flex justify-center">
